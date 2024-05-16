@@ -47,10 +47,11 @@ public class CreateRoutePageActivity extends AppCompatActivity {
                 time_start.setText(hourOfDay + ":" + minute+ " " + dayTime);
             }
         }, 0, 0, true);
+        start_time.show();
     }
 
     void open_stop_dialog() {
-        TimePickerDialog start_time = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog stop_time = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 String dayTime = "AM";
@@ -58,5 +59,6 @@ public class CreateRoutePageActivity extends AppCompatActivity {
                 time_stop.setText(hourOfDay + ":" + minute+ " " + dayTime);
             }
         }, 0, 0, true);
+        stop_time.show();
     }
 }
