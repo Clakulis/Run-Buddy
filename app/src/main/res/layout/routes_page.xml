@@ -6,11 +6,83 @@
     android:layout_height="match_parent"
     >
 
-    <include layout="@layout/layout_menubar"/>
+    <include
+        android:id="@+id/include3"
+        layout="@layout/layout_menubar"
+        tools:layout_editor_absoluteY="683dp" />
 
     <include
         layout="@layout/layout_toolbar"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
          />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/toolBarLayout"
+        tools:layout_editor_absoluteX="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mapSuggestedRoutesButton"
+            android:layout_width="196dp"
+            android:layout_height="33dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/mapSuggestedRoutesButtonText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Suggested Routes"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mapSavedRoutesButton"
+            android:layout_width="196dp"
+            android:layout_height="33dp"
+            android:background="#D9D9D9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/mapSavedRoutesButtonText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saved Routes"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="596dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/include3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+        <include android:id = "@+id/incdude4"
+            android:layout = "@layout/routes_suggested_saved_layout"
+            />
+        <include android:id = "@+id/incdude5"
+            android:layout = "@layout/routes_suggested_saved_layout"
+            />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
