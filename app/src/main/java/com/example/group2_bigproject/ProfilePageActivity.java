@@ -1,5 +1,30 @@
 package com.example.group2_bigproject;
 
+<<<<<<< Updated upstream
+=======
+
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+
+import android.graphics.Typeface;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.HorizontalScrollView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+>>>>>>> Stashed changes
 import static android.Manifest.permission.READ_MEDIA_IMAGES;
 
 import android.content.Intent;
@@ -16,6 +41,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -37,9 +65,25 @@ public class ProfilePageActivity extends AppCompatActivity {
     TextView menuBarSocialButton;
     TextView menuBarProfileButton;
     TextView profilePageEditInformationButton;
+<<<<<<< Updated upstream
+=======
+
+    private String userID;
+    private TextView nameProfile;
+    private TextView genderProfile;
+    private TextView birthdayProfile;
+    private TextView phoneProfile;
+    private TextView addressProfile;
+    private TextView heightProfile;
+    private TextView weightProfile;
+    ConstraintLayout profilePagePersonalInformationButton;
+>>>>>>> Stashed changes
 
     ImageButton btn_editAvatar;
     ImageButton btn_settings;
+
+    ImageView avatar;
+    ImageView backgroundAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +97,8 @@ public class ProfilePageActivity extends AppCompatActivity {
         profilePageEditInformationButton = findViewById(R.id.profilePageEditInformationButton);
         btn_editAvatar = findViewById(R.id.btn_editAvatar);
         btn_settings = findViewById(R.id.btn_Setting);
-
+        avatar = findViewById(R.id.profilePageAvatar);
+        backgroundAvatar=findViewById(R.id.backgroundAvatar);
 
         Bundle bundle = getIntent().getExtras();
         String userID = bundle.getString("userID", "Default");
@@ -131,17 +176,45 @@ public class ProfilePageActivity extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         int n = item.getItemId();
+                        // Registers a photo picker activity launcher in single-select mode.
+                        ActivityResultLauncher<PickVisualMediaRequest> pickMedia =
+                                registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
+                                    // Callback is invoked after the user selects a media item or closes the
+                                    // photo picker.
+                                    if (uri != null) {
+                                        // use uri here for query
+
+                                        if (n == R.id.ProfileAvatarEditor) {
+                                            avatar.setImageURI(uri);
+
+                                            // Example of get drawable from uri
+                                            Drawable drawable =  avatar.getDrawable();
+                                        }
+                                        if (n == R.id.ProfileBackgroundAvatarEditor) {
+                                            backgroundAvatar.setImageURI(uri);
+                                        }
+                                    } else {
+                                        Log.d("PhotoPicker", "No media selected");
+                                    }
+                                });
                         if (n == R.id.ProfileAvatarEditor) {
                             // Avatar change here
+                            pickMedia.launch(new PickVisualMediaRequest.Builder()
+                                    .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                                    .build());
                         }
                         if (n == R.id.ProfileBackgroundAvatarEditor) {
                             // Background change here
+                            pickMedia.launch(new PickVisualMediaRequest.Builder()
+                                    .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                                    .build());
                         }
                         return false;
                     }
                 });
             }
         });
+
 
         btn_settings.setOnClickListener(new View.OnClickListener() {
             @Override
