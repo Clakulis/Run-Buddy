@@ -126,8 +126,13 @@ public class CreatePostPageActivity extends AppCompatActivity {
         createPostButton.setOnClickListener(v -> {
             if(!contentEditText.getText().toString().isEmpty()){
                 Date currentTime = Calendar.getInstance().getTime();
-                fbHelper.savePost(currentTime.toString(), spHelper.getUsername(), contentEditText.getText().toString(), spHelper.getSessionID(), routeID);
-                finish();
+                contentEditText.getText().toString();
+                if (MyUtil.containsSensitiveWords(this, contentEditText.getText().toString())) {
+                    Toast.makeText(this, "Post contain NSFW, please reconsider your morality", Toast.LENGTH_SHORT).show();
+                } else {
+                    fbHelper.savePost(currentTime.toString(), spHelper.getUsername(), contentEditText.getText().toString(), spHelper.getSessionID(), routeID);
+                    finish();
+                }
             } else {
                 Toast.makeText(this, "No content", Toast.LENGTH_SHORT).show();
             }

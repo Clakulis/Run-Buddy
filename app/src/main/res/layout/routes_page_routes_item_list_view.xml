@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="xx.xx km"
         android:textColor="@color/light_grey"
-        app:layout_constraintStart_toEndOf="@id/map"
+        app:layout_constraintStart_toEndOf="@+id/activityHistoryRouteType"
         app:layout_constraintTop_toBottomOf="@+id/activityHistoryRouteName" />
 
     <TextView
